@@ -1,10 +1,14 @@
 package br.com.zup.edu.revista.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Tag {
@@ -16,7 +20,8 @@ public class Tag {
 	@Column(nullable = false)
 	private String nome;
 	
-	
+	@ManyToMany(mappedBy = "tags")
+    private Set<Revista> revistas = new HashSet<>();
 	
 	public Tag(String nome) {
 		this.nome = nome;
@@ -34,4 +39,7 @@ public class Tag {
 		return id;
 	}
 	
+	public void adicionar(Revista revista) {
+        this.revistas.add(revista);
+    }
 }

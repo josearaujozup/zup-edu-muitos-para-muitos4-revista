@@ -52,4 +52,11 @@ public class Revista {
 		return id;
 	}
 	
+	public void adicionar(Set<Tag> novasTags){
+
+        this.tags.addAll(novasTags);
+
+        novasTags.forEach(tag-> tag.adicionar(this));
+    }
+	
 }
